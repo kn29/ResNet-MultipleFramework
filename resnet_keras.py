@@ -100,6 +100,7 @@ class ResNet:
         # Train
         history = self.model.fit_generator(traingen.flow(X_train, y_train, batch_size=128), epochs=self.nb_epochs,
                                            steps_per_epoch=len(X_train)/128, validation_data=valgen.flow(X_val, y_val),
+                                           validation_steps=len(X_val)/128,
                                            callbacks=[time_cb, lr_cb]).history
         history["time"] = time_cb.times
         # Save history
